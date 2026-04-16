@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Information Security Policy — Money Ball</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #1a1a1a;
+      max-width: 780px;
+      margin: 40px auto;
+      padding: 0 40px 60px;
+    }
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      border-bottom: 2px solid #4CAF7D;
+      padding-bottom: 10px;
+      margin-bottom: 4px;
+    }
+    .meta {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 32px;
+    }
+    h2 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 32px;
+      margin-bottom: 6px;
+      color: #1a2b1e;
+      border-left: 4px solid #4CAF7D;
+      padding-left: 10px;
+    }
+    h3 {
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 16px;
+      margin-bottom: 4px;
+      color: #1a2b1e;
+    }
+    p { margin: 6px 0 10px; }
+    ul { margin: 6px 0 10px; padding-left: 20px; }
+    li { margin-bottom: 4px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin: 12px 0;
+    }
+    th {
+      background: #f0f7f3;
+      text-align: left;
+      padding: 8px 10px;
+      border: 1px solid #cde3d5;
+      font-weight: 700;
+    }
+    td {
+      padding: 7px 10px;
+      border: 1px solid #ddd;
+      vertical-align: top;
+    }
+    .footer {
+      margin-top: 48px;
+      font-size: 11px;
+      color: #888;
+      border-top: 1px solid #ddd;
+      padding-top: 12px;
+    }
+    @media print {
+      body { margin: 0; padding: 20px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Information Security Policy</h1>
+  <div class="meta">
+    <strong>Money Ball — Personal Finance Application</strong><br>
+    Owner: Ben Gillen, Founder &amp; Developer &nbsp;|&nbsp; gillen.ben3@gmail.com<br>
+    Effective Date: April 16, 2026 &nbsp;|&nbsp; Review Cycle: Annual
+  </div>
+
+  <h2>1. Purpose and Scope</h2>
+  <p>This Information Security Policy establishes the security practices and controls for Money Ball, a mobile personal finance application. It applies to all systems, data, and processes involved in the development, operation, and maintenance of the Money Ball application and its backend infrastructure.</p>
+
+  <h2>2. Governance and Accountability</h2>
+  <p>Money Ball is currently developed and operated by a single individual:</p>
+  <ul>
+    <li><strong>Name:</strong> Ben Gillen</li>
+    <li><strong>Title:</strong> Founder &amp; Developer</li>
+    <li><strong>Email:</strong> gillen.ben3@gmail.com</li>
+  </ul>
+  <p>Ben Gillen is solely responsible for all information security decisions, implementation, monitoring, and incident response. This policy is reviewed at least annually and updated as the organization grows.</p>
+
+  <h2>3. Access Control</h2>
+
+  <h3>3.1 Role-Based Access Control (RBAC)</h3>
+  <p>Access to production systems, infrastructure, and sensitive data is restricted to authorized personnel only. As a single-developer organization, access is inherently limited to the Founder. No third-party contractors or employees currently have access to production systems.</p>
+
+  <h3>3.2 Principle of Least Privilege</h3>
+  <p>Access is granted only to the systems and data necessary to perform a given function. External services (e.g., Plaid, cloud hosting providers) are granted only the minimum required permissions via scoped API keys.</p>
+
+  <h3>3.3 Multi-Factor Authentication (MFA)</h3>
+  <p>MFA is enforced on all administrator and developer accounts that have access to critical systems, including:</p>
+  <ul>
+    <li>Cloud hosting provider accounts</li>
+    <li>Plaid developer dashboard</li>
+    <li>Version control (GitHub)</li>
+    <li>Email accounts associated with the application</li>
+  </ul>
+
+  <h3>3.4 Credential Management</h3>
+  <ul>
+    <li>API keys and secrets are stored in environment variables, never hardcoded in source code</li>
+    <li>Secrets are rotated periodically and immediately upon any suspected compromise</li>
+    <li>.env files and secrets are excluded from version control via .gitignore</li>
+  </ul>
+
+  <h2>4. Data Classification</h2>
+  <table>
+    <thead>
+      <tr><th>Classification</th><th>Description</th><th>Examples</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Confidential</td><td>Sensitive consumer financial data</td><td>Bank account data, transaction history, Plaid tokens</td></tr>
+      <tr><td>Internal</td><td>Operational data</td><td>App analytics, logs</td></tr>
+      <tr><td>Public</td><td>Publicly available</td><td>Marketing materials, privacy policy</td></tr>
+    </tbody>
+  </table>
+
+  <h2>5. Data Encryption</h2>
+
+  <h3>5.1 Encryption in Transit</h3>
+  <p>All data transmitted between the Money Ball mobile application and backend servers is encrypted using TLS 1.2 or higher. All API calls to third-party services (including Plaid) are made over HTTPS.</p>
+
+  <h3>5.2 Encryption at Rest</h3>
+  <p>Consumer financial data received from the Plaid API is encrypted at rest using AES-256 encryption provided by the managed database/cloud service in use. Database-level encryption is enabled for all data stores containing consumer financial information.</p>
+
+  <h2>6. Third-Party Vendors and Integrations</h2>
+  <p>Third-party services used by Money Ball are evaluated for security practices prior to integration. Current integrations include:</p>
+  <ul>
+    <li><strong>Plaid</strong> — bank account linking and transaction data</li>
+    <li><strong>Anthropic (Claude API)</strong> — AI-powered financial advice features</li>
+    <li><strong>Cloud hosting provider</strong> — backend infrastructure</li>
+  </ul>
+
+  <h2>7. Vulnerability and Patch Management</h2>
+
+  <h3>7.1 Dependency Audits</h3>
+  <p>Dependencies are regularly audited using <code>npm audit</code> to identify and remediate known vulnerabilities in third-party packages. Critical vulnerabilities are patched promptly upon discovery.</p>
+
+  <h3>7.2 Code Review</h3>
+  <p>All production code changes are manually reviewed and tested against a staging environment prior to production release.</p>
+
+  <h3>7.3 Security Testing</h3>
+  <p>The application is tested for common vulnerabilities (OWASP Top 10) during development and prior to each release, with focus on injection attacks, authentication weaknesses, and insecure data exposure.</p>
+
+  <h2>8. Incident Response</h2>
+  <p>In the event of a suspected or confirmed security incident:</p>
+  <ul>
+    <li><strong>Contain</strong> — Immediately revoke compromised credentials, disable affected systems if necessary</li>
+    <li><strong>Assess</strong> — Determine the scope and nature of the incident</li>
+    <li><strong>Notify</strong> — Notify affected users and relevant parties (including Plaid) within 72 hours of a confirmed breach</li>
+    <li><strong>Remediate</strong> — Patch the root cause and restore secure operations</li>
+    <li><strong>Review</strong> — Conduct a post-incident review and update policies as needed</li>
+  </ul>
+  <p><strong>Security contact:</strong> gillen.ben3@gmail.com</p>
+
+  <h2>9. Data Retention and Deletion</h2>
+  <p>Consumer data is retained only as long as necessary to provide the Money Ball service. Upon account deletion, consumer data is purged from production systems within 30 days. Full retention practices are described in the Money Ball Privacy Policy and Data Retention Policy.</p>
+
+  <h2>10. Physical Security</h2>
+  <p>Development work is performed on password-protected devices with full-disk encryption enabled. Devices are locked when unattended.</p>
+
+  <h2>11. Policy Review</h2>
+  <p>This policy is reviewed annually or whenever significant changes occur to the application, infrastructure, or regulatory environment. Updates are documented with a revised effective date.</p>
+
+  <div class="footer">
+    Money Ball Information Security Policy &nbsp;|&nbsp; Last updated: April 16, 2026 &nbsp;|&nbsp; gillen.ben3@gmail.com
+  </div>
+
+</body>
+</html>
